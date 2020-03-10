@@ -1,9 +1,10 @@
 import React, { Fragment } from 'react';
 import './App.css';
 import 'materialize-css/dist/css/materialize.min.css';
-import Cabecalho from './Cabecalho';
-import Tabela from './Tabela';
-import Form from './Formulario';
+import Cabecalho from './component/Cabecalho';
+import Tabela from './component/Tabela';
+import Form from './component/Formulario';
+import Popup from './component/Popup';
 
 class App extends React.Component {
 
@@ -27,10 +28,12 @@ class App extends React.Component {
         }),
       }
     );
+    Popup.exibirMensagem('sucesso', 'Registro removido com sucesso');
   }
 
   adicionarAutor = autor => {
     this.setState({autores : [...this.state.autores, autor]});
+    Popup.exibirMensagem('sucesso', 'Registro adicionado com sucesso');
   }
 
   render() {
@@ -38,6 +41,7 @@ class App extends React.Component {
       <Fragment>
         <Cabecalho />
         <div className="container">
+          <h1>Casa do Código</h1>
           <Tabela autores={this.state.autores} removerAutor={this.removerAutor} />
           <Form adicionarAutor={this.adicionarAutor}/>
         </div>
